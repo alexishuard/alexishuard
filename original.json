@@ -1,0 +1,186 @@
+{
+  "remote_dpkg": {
+    "urls": ["https://s3.amazonaws.com/cbx4-public/src/wkhtmltox-0.12.1_linux-trusty-amd64.deb"]
+  },
+  "rails": {
+    "max_pool_size": 128
+  },
+  "bashrc": {
+    "users": ["ubuntu","root","ibussieres","dev4stage","vcossette","deploy"],
+    "color": "YELLOW"
+  },
+  "default_env": {
+    "CBX3_S3_ACCESS": "AKIAJH7S4RLX2YQW3MZQ",
+    "CBX3_S3_SECRET": "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",
+    "CBX3_CLOUDFRONT_KEY_FILE": "config/cbx3-cloudfront-private.pem",
+    "CBX3_CLOUDFRONT_ID": "APKAISH3CDOUS7NJA6BA",
+    "CBX3_CLOUDFRONT_URL": "https://dwh8j9cotw4sv.cloudfront.net/",
+    "CLOUDFRONT_ID": "APKAJLFBHB2ZKE7ZDSJQ",
+    "CLOUDFRONT_KEY_FILE": "config/cbx4-cloudfront-private.pem",
+    "DEVELOPER_EMAIL": "assurancequalite@simexperts.com",
+    "DEVELOPER_PWD":"cbx4ftwYOLO!",
+    "SECRET_KEY_BASE": "14fac9804eeeefde97f294e1aa302b83cc316bfe615e250a4ca3f1c3294742f0b6e60b4a85653e900d879e4c33a34357f7431c25d3783c497c1dc7a4514fed2a",
+    "SECRET_TOKEN":"72637d82455a90f4247466c24196edc70e103e7027bfb1fc3c7698ea47ef6b9477473a15f331c3fa689ef95795d811d51832577af9d6e395db705d3bebc6f968",
+    "S3_ACCESS":"AKIAIFYJQC3USOWT2UMQ",
+    "S3_SECRET":"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",
+    "AIRBRAKE_API_KEY": "344932a63f0ca11ac779f6a51677c435"
+  },
+  "custom_env": {
+    "cbx4": {
+      "S3_BUCKET":"cbx4-stage-storage",
+      "S3_URL": "https://s3.amazonaws.com/cbx4-stage-storage/",
+      "CLOUDFRONT_URL": "https://stage-storage.cognibox.net/",
+      "ELASTICSEARCH_USER": "cbx4search",
+      "ELASTICSEARCH_PASSWORD": "l1PI5l1TJzZ6RBqax7uV8ak3jEuA7zzQms4HHmps-jqV47ugPyUW4rMehrlJ1vKq",
+      "ELASTICSEARCH_HOST": "search-stage.cognibox.net",
+      "MAILER_HOST": "mail-maintenance.cognibox.net",
+      "MAILER_PORT": 1025,
+      "MAILER_DNS_PORT": 1080,
+      "REDIS_HOST": "redis://:pooh8imoh6Boh0ai@redis-stage.cognibox.net:6379/",
+      "DB_DUMP_NAME": "cbx4_dump_maintenance.custom"
+    },
+    "cbx4sprint": {
+      "DB_DUMP_NAME": "cbx4_dump_sprint.custom",
+      "S3_BUCKET":"cbx4-sprint-storage",
+      "S3_URL": "https://s3.amazonaws.com/cbx4-sprint-storage/",
+      "CLOUDFRONT_URL": "https://sprint-storage.cognibox.net/",
+      "ELASTICSEARCH_USER": "cbx4search",
+      "ELASTICSEARCH_PASSWORD": "DoocociehaimeeToqu9ahcoog5Oong4oowah7soo8ru4jei2que2foongeeyaesoh",
+      "ELASTICSEARCH_HOST": "search-sprint.cognibox.net",
+      "GATE_SECRET": "aeThaeFeib9iphoo2eewaiTh9Liake5e",
+      "MAILER_HOST": "mail-sprint.cognibox.net",
+      "MAILER_PORT": 1026,
+      "MAILER_DNS_PORT": 1081,
+      "REDIS_HOST": "redis://:aichohM8thachaRo@redis-stage.cognibox.net:6381/"
+    },
+    "cbx4extra": {
+      "DB_DUMP_NAME": "cbx4_dump_extra.custom",
+      "S3_BUCKET":"cbx4-extra-storage",
+      "S3_URL": "https://s3.amazonaws.com/cbx4-extra-storage/",
+      "CLOUDFRONT_URL": "https://extra-storage.cognibox.net/",
+      "ELASTICSEARCH_USER": "cbx4search",
+      "ELASTICSEARCH_PASSWORD": "waPhohGheer9axoh1ek1oongaax4Tohg",
+      "ELASTICSEARCH_HOST": "search-demo.cognibox.net",
+      "GATE_SECRET": "ENgei5shai4BeeMeengooqu7woorie5y",
+      "MAILER_HOST": "mail-extra.cognibox.net",
+      "MAILER_PORT": 1027,
+      "MAILER_DNS_PORT": 1082,
+      "REDIS_HOST": "redis://:eiWeePahc0fahZe1@redis-stage.cognibox.net:6383/"
+    }
+  },
+  "deploy": {
+    "cbx4": {
+      "database": {
+        "adapter": "postgresql",
+        "username": "pgsql",
+        "password": "Eed6tei9ohfal5ah",
+        "database": "cbx4stage",
+        "host":"db.cognibox.net"
+      },
+      "deploy_to": "/srv/www/cbx4",
+      "create_dirs_before_symlink": [
+        "tmp",
+        "public",
+        "config",
+        "tmp/cache/assets/stage",
+        "db/backup"
+      ],
+      "do_migrate": "i-fbf12753",
+      "do_mailer": "i-fbf12753",
+      "maintenance": {
+        "allowed_paths": [
+          "/api/business_units/link_to_gate"
+        ],
+        "allowed_ips": [
+          "207.96.241.82"
+        ]
+      },
+      "symlink_before_migrate": {
+        "assets": "public/",
+        "config/application.yml": "config/application.yml",
+        "node_modules":".",
+        "sprockets":"tmp/cache/assets/stage/"
+      },
+      "rails_env": "stage",
+      "whenever":"i-b6f0261e"
+    },
+    "cbx4sprint": {
+      "database": {
+        "adapter": "postgresql",
+        "username": "pgsql",
+        "password": "Eed6tei9ohfal5ah",
+        "database": "cbx4sprint",
+        "host":"db.cognibox.net"
+      },
+      "deploy_to": "/srv/www/cbx4sprint",
+      "create_dirs_before_symlink": [
+        "tmp",
+        "public",
+        "config",
+        "tmp/cache/assets/stage",
+        "db/backup"
+      ],
+      "do_migrate": "i-b6f0261e",
+      "do_mailer": "i-b6f0261e",
+      "maintenance": {
+        "allowed_paths": [
+          "/api/business_units/link_to_gate"
+        ],
+        "allowed_ips": [
+          "207.96.241.82"
+        ]
+      },
+      "symlink_before_migrate": {
+        "assets": "public/",
+        "config/application.yml": "config/application.yml",
+        "node_modules":".",
+        "sprockets":"tmp/cache/assets/stage/"
+      },
+      "rails_env": "stage",
+      "whenever": "i-fbf12753"
+    },
+    "cbx4extra": {
+      "database": {
+        "adapter": "postgresql",
+        "username": "pgsql",
+        "password": "Eed6tei9ohfal5ah",
+        "database": "cbx4extra",
+        "host":"db.cognibox.net"
+      },
+      "deploy_to": "/srv/www/cbx4extra",
+      "create_dirs_before_symlink": [
+        "tmp",
+        "public",
+        "config",
+        "tmp/cache/assets/stage",
+        "db/backup"
+      ],
+      "do_migrate": "i-b6f0261e",
+      "do_mailer": "i-b6f0261e",
+      "maintenance": {
+        "allowed_paths": [
+          "/api/business_units/link_to_gate"
+        ],
+        "allowed_ips": [
+          "207.96.241.82"
+        ]
+      },
+      "symlink_before_migrate": {
+        "assets": "public/",
+        "config/application.yml": "config/application.yml",
+        "node_modules":".",
+        "sprockets":"tmp/cache/assets/stage/"
+      },
+      "rails_env": "stage",
+      "whenever": "i-fbf12753"
+    }
+  },
+  "certificates": {
+    "path": "cbx4-cookbook-files",
+    "files": ["cbx3-cloudfront-private.pem", "cbx4-cloudfront-private.pem", "cbx4-production-cloudfront.pem"]
+  },
+  "kantech": {
+    "DNS": "demo.kantech.com",
+    "IP": "192.203.160.13"
+  }
+}
